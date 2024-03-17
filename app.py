@@ -27,6 +27,7 @@ def remove_watermark():
     :param file 视频
     :param area 区域 (startY, endY, startX, endX)
     """
+    print("start inference")
     if 'file' not in request.files:
         abort(400, description='No selected file')
     file = request.files['file']
