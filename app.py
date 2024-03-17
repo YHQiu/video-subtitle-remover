@@ -75,5 +75,5 @@ def main():
 
 if __name__ == "__main__":
     print(f"run in prot 8000 start")
-    app.run(host='0.0.0.0', port=8000, debug=False)
+    app.run(host='0.0.0.0', port=8000, debug=True)
     print(f"run in prot 8000 success")
