@@ -6,7 +6,7 @@ ENV TZ=Etc/UTC
 
 # 安装您的应用程序需要的其他依赖项
 RUN apt-get update && apt-get install -y \
-    python3-pip \
+    python3-pip build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 # 安装ffmpeg
@@ -18,6 +18,8 @@ WORKDIR /app
 
 # 安装Python依赖
 RUN cd /app
+RUN pip install --upgrade cython
+RUN pip install --upgrade scikit-learn
 RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
 RUN python -m pip install paddlepaddle-gpu==2.4.2.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
 # RUN pip install torch==2.0.1 torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cu118
