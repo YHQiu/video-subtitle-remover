@@ -17,8 +17,6 @@ UPLOAD_FOLDER = db_api.get_temp_dir()
 ALLOWED_EXTENSIONS = {'mp4', 'mov'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-from paddle import fluid
-fluid.install_check.run_check()
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
