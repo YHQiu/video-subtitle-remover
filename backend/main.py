@@ -509,7 +509,11 @@ class SubtitleDetect:
 
 
 class SubtitleRemover:
-    def __init__(self, vd_path, sub_area=None, gui_mode=False):
+    def __init__(self, vd_path, sub_area=None, gui_mode=False, sttn_skip_detection=config.STTN_SKIP_DETECTION):
+        """
+        :param vd_path 视频地址
+        :sub_area (ymin,ymax,xmin,max) 字幕矩形区域
+        """
         importlib.reload(config)
         # 线程锁
         self.lock = threading.RLock()
@@ -522,6 +526,7 @@ class SubtitleRemover:
         if is_image_file(str(vd_path)):
             self.sub_area = None
             self.is_picture = True
+        self.sttn_skip_detection = sttn_skip_detection
         # 视频路径
         self.video_path = vd_path
         self.video_cap = cv2.VideoCapture(vd_path)
@@ -713,7 +718,7 @@ class SubtitleRemover:
 
     def sttn_mode(self, tbar):
         # 是否跳过字幕帧寻找
-        if config.STTN_SKIP_DETECTION:
+        if self.sttn_skip_detection:
             # 若跳过则世界使用sttn模式
             self.sttn_mode_with_no_detection(tbar)
         else:
@@ -862,6 +867,7 @@ class SubtitleRemover:
                     pass
                 else:
                     print(f'failed to delete temp file {self.video_temp_file.name}')
+        return self.video_out_name
 
     def merge_audio_to_video(self):
         # 创建音频临时对象，windows下delete=True会有permission denied的报错
