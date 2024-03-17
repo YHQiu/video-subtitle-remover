@@ -1,6 +1,8 @@
 version: '3.8'
 services:
   video-subtitle-remover:
+    image: video-subtitle-remover:latest
+    container_name: video-subtitle-remover
     build:
       context: .
       dockerfile: Dockerfile

@@ -11,8 +11,7 @@ tqdm==4.66.1
 PySimpleGUI==4.55.1
 easydict==1.9
 #scikit-learn==0.24.2
-#scikit-image==0.17.2
-scikit-image
+scikit-image==0.17.2
 scikit-learn
 pandas==2.0.3
 webdataset==0.2.57
