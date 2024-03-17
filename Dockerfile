@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     python3-pip \
     && rm -rf /var/lib/apt/lists/*
 
-RUN apt-get install ffmpeg
+RUN sudo add-apt-repository ppa:jonathonf/ffmpeg-4 && apt-get update &&apt-get install ffmpeg
 
 # 将您的应用程序代码复制到容器内
 COPY . /app
