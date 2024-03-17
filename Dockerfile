@@ -21,8 +21,8 @@ WORKDIR /app
 RUN cd /app
 RUN pip install --upgrade cython -i https://pypi.tuna.tsinghua.edu.cn/simple
 #RUN pip install --upgrade scikit-learn
-RUN python3 -m pip install paddlepaddle-gpu==2.4.2.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
 RUN pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN python3 -m pip install paddlepaddle-gpu==2.4.2.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
 RUN pip install torch==2.0.1 torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cu118
 
 EXPOSE 8000
