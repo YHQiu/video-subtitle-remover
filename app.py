@@ -1,10 +1,11 @@
 import json
 import os
 import uuid
+from http.client import HTTPException
+
 from flask import Flask, request, send_from_directory, after_this_request, abort
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
-from werkzeug.exceptions import HTTPException
 
 # Assuming your backend.db and backend.main modules are compatible with Flask or don't need specific adaptations.
 from backend.db import db_api
@@ -29,7 +30,7 @@ def remove_watermark():
     """
     print("start inference")
     if 'file' not in request.files:
-        abort(400, description='No selected file')
+        raise HTTPException(400, 'No selected file')
     file = request.files['file']
     area = request.form['area']
     print(area)
@@ -42,7 +43,7 @@ def remove_watermark():
         sttn_skip_detection = False
 
     if file.filename == '':
-        abort(400, description='No selected file')
+        raise HTTPException(400, 'No selected file')
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         unique_filename = f"temp_{uuid.uuid4()}.{filename.rsplit('.', 1)[1].lower()}"
@@ -65,9 +66,9 @@ def remove_watermark():
                                        as_attachment=True)
         except Exception as e:
             print(e)
-            raise abort(500, str(e))
+            raise HTTPException(500, str(e))
     else:
-        raise abort(400, "Invalid file type.")
+        raise HTTPException(500, "Invalid file type.")
 
 @app.route('/')
 def main():
