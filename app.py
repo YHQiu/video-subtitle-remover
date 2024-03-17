@@ -3,8 +3,7 @@ import os
 import uuid
 from http.client import HTTPException
 
-from flask import Flask, request, send_from_directory, after_this_request, abort
-from flask_cors import CORS
+from flask import Flask, request, send_from_directory, after_this_request
 from werkzeug.utils import secure_filename
 
 # Assuming your backend.db and backend.main modules are compatible with Flask or don't need specific adaptations.
@@ -18,6 +17,8 @@ UPLOAD_FOLDER = db_api.get_temp_dir()
 ALLOWED_EXTENSIONS = {'mp4', 'mov'}
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+from paddle import fluid
+fluid.install_check.run_check()
 
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
