@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   video-subtitle-remover:
-    image: video-subtitle-remover:latest
+    image: video-subtitle-remover:1.0
     container_name: video-subtitle-remover
     build:
       context: .
