@@ -1,6 +1,7 @@
 # 使用带有CUDA 11.8支持的Ubuntu 20.04镜像作为基础镜像 https://hub.docker.com/
 #FROM pytorch/pytorch:2.1.0-cuda11.8-cudnn8-runtime
-FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu20.04
+#FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu20.04
+FROM nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Etc/UTC
