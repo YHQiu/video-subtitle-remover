@@ -1,7 +1,7 @@
 import json
 import os
 import uuid
-from flask import Flask, request, send_from_directory, after_this_request
+from flask import Flask, request, send_from_directory, after_this_request, abort
 from flask_cors import CORS
 from werkzeug.utils import secure_filename
 from werkzeug.exceptions import HTTPException
@@ -28,7 +28,7 @@ def remove_watermark():
     :param area 区域 (startY, endY, startX, endX)
     """
     if 'file' not in request.files:
-        raise HTTPException(400, 'No file part')
+        abort(400, description='No selected file')
     file = request.files['file']
     area = request.form['area']
     print(area)
@@ -41,7 +41,7 @@ def remove_watermark():
         sttn_skip_detection = False
 
     if file.filename == '':
-        raise HTTPException(400, 'No selected file')
+        abort(400, description='No selected file')
     if file and allowed_file(file.filename):
         filename = secure_filename(file.filename)
         unique_filename = f"temp_{uuid.uuid4()}.{filename.rsplit('.', 1)[1].lower()}"
@@ -64,9 +64,9 @@ def remove_watermark():
                                        as_attachment=True)
         except Exception as e:
             print(e)
-            raise HTTPException(500, str(e))
+            raise abort(500, str(e))
     else:
-        raise HTTPException(400, "Invalid file type.")
+        raise abort(400, "Invalid file type.")
 
 @app.route('/')
 def main():
