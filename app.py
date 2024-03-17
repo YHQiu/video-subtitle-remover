@@ -12,7 +12,7 @@ from backend.db import db_api
 import backend.main
 
 app = Flask(__name__)
-CORS(app, resources={r"/*": {"origins": "*"}})  # 仅用于示例，实际部署时应限制为真实的前端地址
+# CORS(app, resources={r"/*": {"origins": "*"}})  # 仅用于示例，实际部署时应限制为真实的前端地址
 
 UPLOAD_FOLDER = db_api.get_temp_dir()
 ALLOWED_EXTENSIONS = {'mp4', 'mov'}
