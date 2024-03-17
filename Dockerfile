@@ -13,7 +13,7 @@ COPY . /app
 WORKDIR /app
 
 # 安装Python依赖
-cd /app
+RUN cd /app
 RUN python -m pip install paddlepaddle-gpu==2.4.2.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
 RUN pip install torch==2.0.1 torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cu118
 RUN pip install -r requirements.txt

@@ -217,6 +217,11 @@ LAMA_SUPER_FAST = False  # 保证效果
 
 解决方案：改用cuda 11.8
 
+6. Docker Run
+```shell
+docker compose -f "docker-compose.yaml" up -d
+```
+
 ```shell
 pip install torch==2.1.0 torchvision==0.16.0 --index-url https://download.pytorch.org/whl/cu118
 ```
