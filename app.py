@@ -56,10 +56,10 @@ def remove_watermark():
         try:
             output_file = backend.main.SubtitleRemover(temp_filepath, subtitle_area, sttn_skip_detection=sttn_skip_detection).run()
 
-            @after_this_request
-            def remove_file(response):
-                os.remove(temp_filepath)
-                return response
+            # @after_this_request
+            # def remove_file(response):
+            #     os.remove(temp_filepath)
+            #     return response
 
             return send_from_directory(directory=os.path.dirname(output_file),
                                        path=os.path.basename(output_file),

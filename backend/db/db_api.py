@@ -1,7 +1,7 @@
 # 基础文件保存路径
 import os
 
-BASE_FILE_DIR = "/data/playlet"
+BASE_FILE_DIR = "/data/video-subtitle-remover"
 
 TEMP_PATH = "tmp"
 
