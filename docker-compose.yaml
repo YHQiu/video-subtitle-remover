@@ -1,0 +1,10 @@
+version: '3.8'
+services:
+  video-subtitle-remover:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000" # 将容器的8000端口映射到宿主机的8000端口
+    volumes:
+      - .:/app # 将当前目录挂载到容器的/app目录，以便可以访问应用程序代码
