@@ -53,6 +53,7 @@ def remove_watermark():
         subtitle_area = (area_list[0], area_list[1], area_list[2], area_list[3])
 
         try:
+            print(subtitle_area)
             output_file = backend.main.SubtitleRemover(temp_filepath, subtitle_area, sttn_skip_detection=sttn_skip_detection).run()
 
             @after_this_request

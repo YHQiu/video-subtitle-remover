@@ -11,4 +11,4 @@ def get_base_file_dir():
 
 def get_temp_dir():
     os.makedirs(os.path.join(BASE_FILE_DIR, TEMP_PATH), exist_ok=True)
-    return BASE_FILE_DIR
+    return os.path.join(BASE_FILE_DIR, TEMP_PATH)
