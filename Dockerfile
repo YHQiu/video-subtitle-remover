@@ -5,7 +5,7 @@
 FROM nvidia/cuda:11.7.1-cudnn8-devel-ubuntu20.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV TZ=Etc/UTC
+ENV TZ=Asia/Shanghai
 
 # 安装您的应用程序需要的其他依赖项
 RUN apt-get update && apt-get install -y \
