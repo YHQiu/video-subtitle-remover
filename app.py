@@ -9,6 +9,7 @@ from werkzeug.utils import secure_filename
 # Assuming your backend.db and backend.main modules are compatible with Flask or don't need specific adaptations.
 from backend.db import db_api
 import backend.main
+from backend.fastmode.fast_remover import fast_remove_subtitles
 
 app = Flask(__name__)
 # CORS(app, resources={r"/*": {"origins": "*"}})  # 仅用于示例，实际部署时应限制为真实的前端地址
@@ -30,6 +31,12 @@ def remove_watermark():
     print("start inference")
     if 'file' not in request.files:
         raise HTTPException(400, 'No selected file')
+
+    # 移除模式 remove_mode = 'fast'|'normal'
+    if 'remove_mode' in request.form:
+        remove_mode = request.form['remove_mode']
+    else:
+        remove_mode = 'normal'
     file = request.files['file']
     area = request.form['area']
     print(area)
@@ -54,7 +61,10 @@ def remove_watermark():
 
         try:
             print(subtitle_area)
-            output_file = backend.main.SubtitleRemover(temp_filepath, subtitle_area, sttn_skip_detection=sttn_skip_detection).run()
+            if remove_mode == 'fast':
+                output_file = fast_remove_subtitles(temp_filepath, subtitle_area)
+            else:
+                output_file = backend.main.SubtitleRemover(temp_filepath, subtitle_area, sttn_skip_detection=sttn_skip_detection).run()
 
             @after_this_request
             def remove_file(response):

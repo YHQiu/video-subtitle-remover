@@ -80,7 +80,7 @@ MODE = InpaintMode.STTN
 # 用于判断是不是非字幕区域(一般认为字幕文本框的长度是要大于宽度的，如果字幕框的高大于宽，且大于的幅度超过指定像素点大小，则认为是错误检测)
 THRESHOLD_HEIGHT_WIDTH_DIFFERENCE = 10
 # 用于放大mask大小，防止自动检测的文本框过小，inpaint阶段出现文字边，有残留
-SUBTITLE_AREA_DEVIATION_PIXEL = 20
+SUBTITLE_AREA_DEVIATION_PIXEL = 30 # 默认20
 # 同于判断两个文本框是否为同一行字幕，高度差距指定像素点以内认为是同一行
 THRESHOLD_HEIGHT_DIFFERENCE = 20
 # 用于判断两个字幕文本的矩形框是否相似，如果X轴和Y轴偏差都在指定阈值内，则认为时同一个文本框
@@ -112,7 +112,7 @@ STTN_SKIP_DETECTION = True
 # 参考帧步长
 STTN_NEIGHBOR_STRIDE = 5
 # 参考帧长度（数量）
-STTN_REFERENCE_LENGTH = 10
+STTN_REFERENCE_LENGTH = 50 # 默认10
 # 设置STTN算法最大同时处理的帧数量
 STTN_MAX_LOAD_NUM = 50
 if STTN_MAX_LOAD_NUM < STTN_REFERENCE_LENGTH * STTN_NEIGHBOR_STRIDE:
@@ -123,7 +123,7 @@ if STTN_MAX_LOAD_NUM < STTN_REFERENCE_LENGTH * STTN_NEIGHBOR_STRIDE:
 # 【根据自己的GPU显存大小设置】最大同时处理的图片数量，设置越大处理效果越好，但是要求显存越高
 # 1280x720p视频设置80需要25G显存，设置50需要19G显存
 # 720x480p视频设置80需要8G显存，设置50需要7G显存
-PROPAINTER_MAX_LOAD_NUM = 70
+PROPAINTER_MAX_LOAD_NUM = 25
 # ×××××××××× InpaintMode.PROPAINTER算法设置 end ××××××××××
 
 # ×××××××××× InpaintMode.LAMA算法设置 start ××××××××××
