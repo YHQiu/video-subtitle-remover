@@ -64,7 +64,7 @@ def remove_watermark():
             if remove_mode == 'fast':
                 subtitle_file = request.files['subtitle_file']
                 subtitle_unique_file_name = f"temp_{uuid.uuid4()}.{subtitle_file.filename.rsplit('.', 1)[1].lower()}"
-                file.save(subtitle_unique_file_name)
+                subtitle_file.save(subtitle_unique_file_name)
                 output_file = fast_remove_subtitles(temp_filepath, subtitle_area, subtitle_path=subtitle_unique_file_name)
             else:
                 output_file = backend.main.SubtitleRemover(temp_filepath, subtitle_area, sttn_skip_detection=sttn_skip_detection).run()
