@@ -43,10 +43,11 @@ def remove_watermark():
     remove_type = request.form['remove_type'] #water_mask | subtitle
     if remove_type is None:
         remove_type = 'water_mask'
-    if remove_type == 'water_mask':
-        sttn_skip_detection = True
-    else:
-        sttn_skip_detection = False
+    # if remove_type == 'water_mask':
+    #     sttn_skip_detection = True
+    # else:
+    #     sttn_skip_detection = False
+    sttn_skip_detection = False
 
     if file.filename == '':
         raise HTTPException(400, 'No selected file')
