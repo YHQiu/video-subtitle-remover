@@ -90,7 +90,7 @@ def fast_remove_subtitles(video_file_path, area, **kwargs):
         if subtitles and is_within_subtitles(timestamp, subtitles):
             # Apply Gaussian Blur
             subtitle_area = frame[startY:endY, startX:endX]
-            blurred_subtitle = cv2.GaussianBlur(subtitle_area, (25, 25), 10)
+            blurred_subtitle = cv2.GaussianBlur(subtitle_area, (25, 25), 15)
             frame[startY:endY, startX:endX] = blurred_subtitle
 
         out.write(frame)
