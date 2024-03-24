@@ -56,7 +56,7 @@ def parse_subtitles(subtitle_path):
 def is_within_subtitles(timestamp, subtitles):
     """检查给定的时间戳是否在字幕显示的时间内"""
     for start, end in subtitles:
-        if start <= timestamp <= end:
+        if start-0.1 <= timestamp <= end+0.1:
             return True
     return False
 
