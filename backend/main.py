@@ -725,8 +725,7 @@ class SubtitleRemover:
             self.sttn_mode_with_no_detection(tbar)
         else:
             print('use sttn mode')
-            # sttn_inpaint = STTNInpaint()
-            sttn_inpaint = OptimizedSTTNVideoInpaint(video_path)
+            sttn_inpaint = STTNInpaint()
             sub_list = self.sub_detector.find_subtitle_frame_no(sub_remover=self)
             continuous_frame_no_list = self.sub_detector.find_continuous_ranges_with_same_mask(sub_list)
             print(continuous_frame_no_list)
