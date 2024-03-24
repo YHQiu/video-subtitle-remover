@@ -5,9 +5,6 @@ from pathlib import Path
 import threading
 import cv2
 import sys
-
-from backend.inpaint.sttn_inpain_optimized import OptimizedSTTNVideoInpaint
-
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
