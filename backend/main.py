@@ -6,6 +6,8 @@ import threading
 import cv2
 import sys
 
+from backend.inpaint.sttn_inpain_optimized import OptimizedSTTNVideoInpaint
+
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import config
@@ -723,7 +725,8 @@ class SubtitleRemover:
             self.sttn_mode_with_no_detection(tbar)
         else:
             print('use sttn mode')
-            sttn_inpaint = STTNInpaint()
+            # sttn_inpaint = STTNInpaint()
+            sttn_inpaint = OptimizedSTTNVideoInpaint(video_path)
             sub_list = self.sub_detector.find_subtitle_frame_no(sub_remover=self)
             continuous_frame_no_list = self.sub_detector.find_continuous_ranges_with_same_mask(sub_list)
             print(continuous_frame_no_list)
