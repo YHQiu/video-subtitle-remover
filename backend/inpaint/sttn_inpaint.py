@@ -88,9 +88,9 @@ class STTNInpaint:
                 # 将最终帧添加到列表
                 inpainted_frames.append(frame)
                 print(f'processing frame, {len(frames_hr) - j} left')
-        if torch.cuda.is_available():
-            # 每个批次回收显存，防止显存溢出
-            torch.empty()
+        # if torch.cuda.is_available():
+        #     # 每个批次回收显存，防止显存溢出
+        #     torch.empty()
         return inpainted_frames
 
     @staticmethod
